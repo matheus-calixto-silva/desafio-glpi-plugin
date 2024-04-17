@@ -1,0 +1,46 @@
+version: '3.9'
+services:
+  glpi_app:
+    image: sdbrasil/glpi:10.0.14
+    container_name: glpi-10
+    entrypoint: /entrypoint.sh
+    environment:
+      - TZ=America/Sao_Paulo 
+      - DB_HOST=db-glpi-10
+      - GLPI_HOME=/usr/share/glpi/
+      - DB_PORT=3306
+      - DB_NAME=glpi
+      - DB_USER=glpi
+      - DB_PASSWORD=GLP1_MySQL@10
+    volumes:
+       - ./entrypoint.sh:/entrypoint.sh
+       - ./plugins:/usr/share/glpi/plugins
+    networks:
+      - glpi
+    ports:
+      - 8080:80
+    depends_on:
+      glpidb:
+        condition: service_healthy
+
+  glpidb:
+    image: percona/percona-server:8.0
+    container_name: db-glpi-10
+    networks:
+      - glpi
+    environment:
+      - MYSQL_ROOT_PASSWORD=ADM@MySQL_GLP1
+      - MYSQL_DATABASE=glpi
+      - MYSQL_USER=glpi
+      - MYSQL_PASSWORD=GLP1_MySQL@10
+      - TZ=America/Sao_Paulo 
+    ports:
+      - 3306:3306
+    healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 5s
+            retries: 20
+
+networks:
+  glpi:
+    driver: bridge   
