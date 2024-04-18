@@ -9,7 +9,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 ## Avisos antes de começar
 
 - Leia com atenção este documento todo e tente seguir ao **máximo** as instruções;
-- Faça um FORK desse repositório no seu GitHub;
+- Faça um clone desse repositório e publique no seu usuário GitHub;
 - O seu repostório deverá ser **privado**;
 - Convide o usuário da **green4T** que foi compartilhado por email pelo **recrutador responsável** para colaborar no seu repositório, dessa forma poderemos avaliar o seu trabalho;
 - Faça seus commits no seu repositório;
